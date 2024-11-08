@@ -16,7 +16,7 @@ class TodoTask extends StatefulWidget {
 }
 
 class _TodoTaskState extends State<TodoTask> {
-  late bool _isCompleted = widget.todoTask.isDone;
+    bool _isCompleted = false;
 
   void _toggleCompletion() {
     setState(() {
@@ -25,24 +25,29 @@ class _TodoTaskState extends State<TodoTask> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    _isCompleted = widget.todoTask.isDone;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Radio(
-        value: _isCompleted,
-        groupValue: true,
-        onChanged: (bool? value) {
-          _toggleCompletion();
-          widget.onToggleCompletion(_isCompleted);
-        },
+      leading: Checkbox(
+      value: widget.todoTask.isDone,
+      onChanged: (bool? value) {
+
+        _toggleCompletion();
+        widget.onToggleCompletion(_isCompleted);
+      },
       ),
       title: Text(
-        _isCompleted ? 'Completed: ${widget.todoTask.title}' : widget.todoTask.title,
+       widget.todoTask.title,
         style: TextStyle(
-          decoration: _isCompleted ? TextDecoration.lineThrough : TextDecoration.none,
+          decoration: widget.todoTask.isDone ? TextDecoration.lineThrough : TextDecoration.none,
         ),
       ),
       subtitle: widget.todoTask.description != null ? Text(widget.todoTask.description!) : null,
-      onTap: _toggleCompletion,
     );
   }
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:todolist/screens/search_screen/index.dart';
 import 'package:todolist/screens/today_screen/index.dart';
+import 'package:todolist/screens/upcoming_screen/index.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -15,8 +17,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   static const List<Widget> _widgetOptions = <Widget>[
     TodayScreen(),
-    Text('Upcoming'),
-    Text('Search'),
+    UpcomingScreen(),
+    SearchScreen(),
   ];
 
   void _onItemTapped(int index) {
@@ -37,15 +39,15 @@ class _MyHomePageState extends State<MyHomePage> {
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(Icons.calendar_today_outlined),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search),
+            icon: Icon(Icons.calendar_month_outlined),
             label: 'Upcoming',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
+            icon: Icon(Icons.search),
             label: 'Search',
           ),
         ],
